@@ -18,7 +18,7 @@ pipeline {
                         withSonarQubeEnv('sonarqube') {
                             sh "echo 'Calling sonar by ID!'"
                             // Run Maven on a Unix agent to execute Sonar.
-                            sh 'gradle sonarqube -Dsonar.projectKey=ejemplo-gradle -Dsonar.java.binaries=build'
+                            sh './gradlew sonarqube -Dsonar.projectKey=ejemplo-gradle -Dsonar.java.binaries=build'
                         }
                     }
                     stage("Paso 3: Curl Springboot Gradle sleep 20"){
@@ -32,7 +32,7 @@ pipeline {
                             [$class: 'MavenPackage',
                                 mavenAssetList: [
                                     [classifier: '',
-                                    extension: '.jar',
+                                    extension: 'jar',
                                     filePath: 'build/libs/DevOpsUsach2020-0.0.1.jar'
                                 ]
                             ],
